@@ -1,48 +1,50 @@
 function initMap() {
-    var pointA = new google.maps.LatLng(51.7519, -1.2578),
-        pointB = new google.maps.LatLng(50.8429, -0.1313),
-        myOptions = {
-            zoom: 7,
-            center: pointA
-        },
-        map = new google.maps.Map(document.getElementById('mapagoogle'), myOptions),
-        // Instantiate a directions service.
-        directionsService = new google.maps.DirectionsService,
-        directionsDisplay = new google.maps.DirectionsRenderer({
-            map: map
-        }),
-        markerA = new google.maps.Marker({
-            position: pointA,
-            title: "point A",
-            label: "A",
-            map: map
-        }),
-        markerB = new google.maps.Marker({
-            position: pointB,
-            title: "point B",
-            label: "B",
-            map: map
-        });
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -33.8688, lng: 151.2195},
+    zoom: 13
+  });
 
-    // get route from A to B
-    calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+  var input = document.getElementById('pac-input');
 
-}
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  autocomplete.bindTo('bounds', map);
 
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
+  var infowindow = new google.maps.InfoWindow();
+  var marker = new google.maps.Marker({
+    map: map
+  });
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
 
-function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
-    directionsService.route({
-        origin: pointA,
-        destination: pointB,
-        avoidTolls: true,
-        avoidHighways: false,
-        travelMode: google.maps.TravelMode.DRIVING
-    }, function (response, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-            directionsDisplay.setDirections(response);
-        } else {
-            window.alert('Directions request failed due to ' + status);
-        }
+  autocomplete.addListener('place_changed', function() {
+    infowindow.close();
+    var place = autocomplete.getPlace();
+    if (!place.geometry) {
+      return;
+    }
+
+    if (place.geometry.viewport) {
+      map.fitBounds(place.geometry.viewport);
+    } else {
+      map.setCenter(place.geometry.location);
+      map.setZoom(17);
+    }
+
+    // Set the position of the marker using the place ID and location.
+    marker.setPlace({
+      placeId: place.place_id,
+      location: place.geometry.location
     });
+    marker.setVisible(true);
+
+    document.getElementById('place-name').textContent = place.name;
+    document.getElementById('place-id').textContent = place.place_id;
+    document.getElementById('place-address').textContent =
+        place.formatted_address;
+    infowindow.setContent(document.getElementById('infowindow-content'));
+    infowindow.open(map, marker);
+  });
 }
