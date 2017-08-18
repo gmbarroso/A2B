@@ -17,6 +17,7 @@ html, body {
   height: 32px;
   outline: none;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  left: 80px;
 }
 
 #origin-input,
@@ -47,4 +48,8 @@ html, body {
   font-family: Roboto;
   font-size: 13px;
   font-weight: 300;
+}
+
+.container {
+  padding: 0px;
 }

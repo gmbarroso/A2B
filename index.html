@@ -2,37 +2,42 @@
 <html>
 <head>
   <title>A2B</title>
-  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <!-- <meta name="viewport" content="initial-scale=1.0, user-scalable=no"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
 
   <link href="./css/style.css" rel="stylesheet">
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaMueYa5V3V-KwlbAfqd5EfTh52fpybeE&libraries=places&callback=initMap" async defer></script>
   <script src="./js/index.js"></script>
+  <!-- <script src="./js/uber.js"></script> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-
+   <!-- <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/> -->
 
 </head>
 
-<body class="col-sm-12 mapabody">
-  <input id="origin-input" class="controls" type="text"
-  placeholder="Local de origem">
+<body>
+    <input id="origin-input" class=" controls" type="text"
+    placeholder="Local de origem">
 
-  <input id="destination-input" class="controls" type="text"
-  placeholder="Local de chegada">
+    <input id="destination-input" class="controls" type="text"
+    placeholder="Local de chegada">
 
-  <div id="mode-selector" class="controls">
-    <input type="radio" name="type" id="changemode-walking">
-    <label for="changemode-walking">Walking</label>
+    <div id="mode-selector" class="controls">
+      <input type="radio" name="type" id="changemode-walking">
+      <label for="changemode-walking">Walking</label>
 
-    <input type="radio" name="type" id="changemode-transit">
-    <label for="changemode-transit">Transit</label>
+      <input type="radio" name="type" id="changemode-transit">
+      <label for="changemode-transit">Other Option</label>
 
-    <input type="radio" name="type" id="changemode-driving" checked="checked">
-    <label for="changemode-driving">Driving</label>
-  </div>
-  <div id="map">
-  </div>
+      <input type="radio" name="type" id="changemode-driving" checked="checked">
+      <label for="changemode-driving">Driving</label>
+    </div>
+
+
+
+  <div id="map" class="col-sm-12"></div>
+
+
 
 
 </body>
