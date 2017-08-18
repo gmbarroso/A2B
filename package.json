@@ -9,6 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google/maps": "^0.4.3"
+    "@google/maps": "^0.4.3",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.7",
+    "node-uber": "^1.0.0",
+    "nodemon": "^1.11.0",
+    "oauth": "^0.9.15",
+    "request": "^2.81.0"
   }
 }
